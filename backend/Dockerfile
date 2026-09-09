@@ -21,6 +21,5 @@ RUN npm run build
 
 EXPOSE 5000
 
-# Start command is overridden in docker-compose for migrations, 
-# but fallback to just starting the server here.
-CMD ["npm", "start"]
+# Start command: run migrations then start server
+CMD ["sh", "-c", "npx prisma migrate deploy && npm start"]
