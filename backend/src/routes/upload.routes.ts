@@ -19,10 +19,10 @@ const upload = multer({
     s3: s3,
     bucket: process.env.AWS_S3_BUCKET || 'my-bucket',
     acl: 'public-read',
-    metadata: function (req, file, cb) {
+    metadata: function (req: any, file: any, cb: any) {
       cb(null, { fieldName: file.fieldname });
     },
-    key: function (req, file, cb) {
+    key: function (req: any, file: any, cb: any) {
       const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
       cb(null, 'products/' + uniqueSuffix + '-' + file.originalname.replace(/\s+/g, '-'));
     }
